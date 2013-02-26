@@ -123,8 +123,35 @@ float:left;
 /* ---------------------------------- */
 /* B */
 /* ---------------------------------- */
- 
 
+.board 
+{
+	 
+	height:320px;
+
+}
+
+.board div
+{
+	display:inline-block;
+	height:80px;
+	width:238px;
+}
+.board div a
+{
+	border:1px solid #900;
+	display:block;
+	font-size:40px;
+	padding:20px 0;
+	text-align:center; 
+}
+
+.board div a.selected
+{
+	background-color:#ccc;
+	border:1px solid #900;
+	color:#ccc;
+}
 
 /* ---------------------------------- */
 /* C */
