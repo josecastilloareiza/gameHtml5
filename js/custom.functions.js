@@ -4,26 +4,52 @@
 	 
 	
 $(document).on("ready", init)
-var basics=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
-var cards=['A1', 'A2', 'B1', 'B2' , 'C1', 'C2', 'D1', 'D2', 'E1', 'E2', 'F1', 'F2', 'G1', 'G2', 'H1', 'H2', 'I1', 'I2' ];
+var basics=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+var cards=['A1', 'A2', 'B1', 'B2' , 'C1', 'C2', 'D1', 'D2', 'E1', 'E2', 'F1', 'F2', 'G1', 'G2', 'H1', 'H2', 'I1', 'I2', 'J1', 'J2' ];
 var cardsWon=['M'];
 var wins=0;
 var randomArray={}; 
 var pairSelected=['', '']
 var score=cards.length/2;
 var time=0;
+$(document).on("ready", function()
+{
+	
+ 	
+	
+	})
 
+$(document).on("click", ".card", function(){
+	
+	// $(this).toggleClass("flipped")
+} );
 
-$(document).on("click", ".board div a img", function(){
+$(document).on("click", ".board div a img", function(event){
+	 event.preventDefault();
+	 
+	selectCard($(this).parent().parent().attr("id"));
+	 validateTurn($(this).parent().parent().attr("id"));
+	 
+	$(this).parent().parent().addClass('flipped').mouseleave(function(){
+	$(this).removeClass('flipped');
+	});
+	// return false;
+	
+} );
 	
 	
-	selectCard($(this).parent().attr("id"));
-	console.log(this)
-	 validateTurn($(this).parent().attr("id"));
-	
-	
-	// console.log('Valor' + $(this).text());
-	} );
+/*$(document).on("click", ".board div a img", function(){
+	$(this).parent().parent().addClass('flipped').mouseleave(function(){
+		$(this).removeClass('flipped');
+	});
+	return false;
+});*/
+
+/* --- PREVENTS BLUE DOTTED LINE ON CLICK --- */		
+$(document).on("focus", ".card a", function(){
+//console.log('entro')
+	 if(this.blur)this.blur()
+} );	
  
  
 /* --- INIT FUNCTIONS --- */
@@ -53,6 +79,8 @@ $("#startGame").on ("click",
 )
 	
 }
+
+
 
  
 	
@@ -85,14 +113,15 @@ function drawCards()
 {
 	$.each(cards, function(i, n){
 		
-		
-	var b = i%2; 
-	if (b==0) { 
-		 $(".board").append("<div><a href='javascript:void(0)' id='" + n +"'><img src='test/" + n.substr(0,1) + ".png'></a></div>")
-	}else{ 
-		 $(".board").append("<div><a href='javascript:void(0)' id='" + n +"'><img src='test/" + n.substr(0,1) + ".png'></a></div>")
-	}  
-	
+	var strCard='<div class="container">';
+		strCard+='<div class="card">';
+		strCard+="<a class='card' href='javascript:void(0)' id='" + n +"'>";
+		strCard+='<figure class="front"><img src="test/X.png"></figure>';
+		strCard+="<figure class='back'><img src='test/" + n.substr(0,1) + ".png'></figure>";
+		strCard+='</a>';
+		strCard+='</div>';
+		strCard+='</div>';
+		$(".board").append(strCard)	
 	
 	});
 	

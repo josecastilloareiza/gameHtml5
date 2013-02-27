@@ -44,12 +44,13 @@ height:0;
 strong {
 font-weight: 700;
 }
-:outline
+:outline, :focus
 {
 	border:none;
 }
 a {
 text-decoration: none;
+outline:none;
 }
 
 a:hover {
@@ -121,7 +122,15 @@ float:left;
 /* ---------------------------------- */
 /* A */
 /* ---------------------------------- */
- 
+ a:active
+{
+outline: none;
+}
+
+a:focus
+{
+-moz-outline-style: none;
+}
 
 /* ---------------------------------- */
 /* B */
@@ -130,9 +139,7 @@ float:left;
 .board 
 {
 	 
-	height:430px;
-	text-align:center;
-
+	height:600px;
 }
 
 .board div
@@ -140,7 +147,7 @@ float:left;
 	display:inline-block;
 	height:110px;
 	width:140px;
-	margin:0 20px 30px 0;
+	margin:0 30px 30px 0;
 }
 .board div a
 {
@@ -150,27 +157,72 @@ float:left;
 	-webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
 	box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
 	display:block;
+	height:110px;
 	padding: 0;
 	text-align:center;
+	transition-duration: 0.5s;
+	-webkit-transition-duration: 0.5s;	
+	width:140px;
 	
+	 
+ 
 }
+ 
 .board div a img
 {
-	width:100%;
+	width:100%
+	 
 	
 }
-.board div a.selected
-{
-	background-color:#f2f2f2;
-	border:2px dashed #ccc;
-	color:#ccc;
+ 
+
+.board .container { 
+  width: 140px;
+  height: 110px;
+  position: relative;
+  perspective: 800px;
+  -webkit-perspective: 800px;
 }
-.board div a.flip
-{
-	background-color:#ccc;
-	border:2px solid #f00;
-	color:#ccc;
+
+.board .card {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
+	transition-duration: .5s;
+	-webkit-transition-duration: .5s;	
 }
+.board .card a:hover {
+	-webkit-box-shadow:  0 0 3px 3px rgba(0, 0, 0, .4);
+	box-shadow: 0 0 3px 3px rgba(0, 0, 0, .4); 
+}
+.board .card figure {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+.board .card .back {
+  transform: rotateY( 180deg );
+  -webkit-transform: rotateY( 180deg );
+}
+
+.board .card.flipped {
+  transform: rotateY( 180deg );
+  -webkit-transform: rotateY( 180deg );
+}
+ 
+/* ---------------------------------- */
+/* FLIP */
+/* ---------------------------------- */
+
+
+
 /* ---------------------------------- */
 /* C */
 /* ---------------------------------- */
