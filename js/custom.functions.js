@@ -12,6 +12,7 @@ var randomArray={};
 var pairSelected=['', '']
 var score=cards.length/2;
 var time=0;
+var firstAttempt=0;
 $(document).on("ready", function()
 {
 	
@@ -24,26 +25,30 @@ $(document).on("click", ".card", function(){
 	// $(this).toggleClass("flipped")
 } );
 
-$(document).on("click", ".board div a img", function(event){
-	 event.preventDefault();
+$(document).on("click", ".board div a.visible img", function(event){
+	 
+	$("#message-2").html("Already taken!");
+} );
+
+$(document).on("click", ".board div a.hidden img", function(event){
+	 
 	 
 	selectCard($(this).parent().parent().attr("id"));
 	 validateTurn($(this).parent().parent().attr("id"));
 	 
-	$(this).parent().parent().addClass('flipped').mouseleave(function(){
+	$(this).parent().parent().addClass('flipped').delay(1000).mouseleave(function(){
 	$(this).removeClass('flipped');
 	});
-	// return false;
+	//event.preventDefault();
+	 // return false;
 	
 } );
-	
-	
-/*$(document).on("click", ".board div a img", function(){
-	$(this).parent().parent().addClass('flipped').mouseleave(function(){
-		$(this).removeClass('flipped');
-	});
-	return false;
-});*/
+
+
+$(document).on('transitionend webkitTransitionEnd oTransitionEnd otransitionend',".board div a", function() {
+    // your event handler
+	// console.log('termino')
+});
 
 /* --- PREVENTS BLUE DOTTED LINE ON CLICK --- */		
 $(document).on("focus", ".card a", function(){
@@ -55,10 +60,10 @@ $(document).on("focus", ".card a", function(){
 /* --- INIT FUNCTIONS --- */
 function init ()
 {
-loadArray()
-
- updateClock(); 
-  setInterval('updateClock()', 1000 );
+	loadArray()
+	
+	updateClock(); 
+	setInterval('updateClock()', 1000 );
 
 $("#loadCards").on ("click",
 	function ()
@@ -74,7 +79,9 @@ $("#startGame").on ("click",
 	function ()
 	{
 		$("#score").html(score)
-		
+		loadArray()
+		removeCards()
+		drawCards()
 	}
 )
 	
@@ -113,9 +120,17 @@ function drawCards()
 {
 	$.each(cards, function(i, n){
 		
-	var strCard='<div class="container">';
-		strCard+='<div class="card">';
-		strCard+="<a class='card' href='javascript:void(0)' id='" + n +"'>";
+	var strCard='';
+		if(i%5==4)
+		{
+		
+		strCard+='<div class="container last">';
+		}
+		else
+		{
+		strCard+='<div class="container">';
+		}
+		strCard+="<a class='card hidden' href='javascript:void(0)' id='" + n +"'>";
 		strCard+='<figure class="front"><img src="test/X.png"></figure>';
 		strCard+="<figure class='back'><img src='test/" + n.substr(0,1) + ".png'></figure>";
 		strCard+='</a>';
@@ -136,6 +151,8 @@ function removeCards()
 
 function validateTurn(turn)
 {
+	
+	
 	if(pairSelected[0]=='')
 	{
 		pairSelected[0]=turn;
@@ -150,31 +167,46 @@ function validateTurn(turn)
 		
 		if(firstCard==secondCard)
 		{
-		console.log(':)')
+		//console.log(':)')
 		//cardsWon[0]=firstCard;
-		console.log(firstCard)
+		//console.log(firstCard)
 		flipCards(pairSelected[0], pairSelected[1])
 		pairSelected[0]='';
 		pairSelected[1]='';
-		console.log("Congratulations! Score: " + score)
+		$("#message").html("Congratulations! Score: " + score);
+		$("#message-2").html("Match");
 		$("#score").html(score)
-		 validateCards(firstCard)
+		
+		validateCards(firstCard)
 		}
 		else
 		{
-		console.log(':(')
+		//console.log(':(')
 		pairSelected[0]='';
 		pairSelected[1]='';
-		console.log("Score: " + score)
-		
+		$("#score").html(score)
+		$("#message-2").html("No match");
+			if (firstAttempt==0)
+			{
+			firstAttempt=1;
+			}
+			else
+			{
+				score--;
+			}
 		}
 		
 		// console.log(pairSelected[0] + "/" + pairSelected[1])
 		
 		// console.log(firstCard + " / " + secondCard) 
-	}
+ 	
+}
 	
-	var firstCard, secondCard;
+	
+	
+	
+	
+	//var firstCard, secondCard;
 	
 	
 	
@@ -183,14 +215,16 @@ function validateTurn(turn)
 
 function flipCards(firstCard, secondCard)
 {
-	 
-	
-	$('.board a').each(function() {
+	console.log('Valores: ' + firstCard + " / " + secondCard);
+	 $("#" + firstCard).addClass("flip").removeClass("hidden").addClass("visible")
+	$("#" + secondCard).addClass("flip").removeClass("hidden").addClass("visible")
+	/*$('.board a').each(function() {
 		var isFound = $(this).text().search(firstCard);
 		if(!isFound)
 		{
 		$(this).addClass("flip")
 		}
+		console.log('Win ' + firstCard)
 		
 		// console.log(isFound)
 	});
@@ -200,12 +234,13 @@ function flipCards(firstCard, secondCard)
 		{
 		$(this).addClass("flip")
 		}
+		console.log('Win ' + secondCard)
 		// console.log(isFound)
-	});
+	});*/
 	
 	
 	
-	console.log('Valores: ' + firstCard + " / " + secondCard);
+	
 }
 
 function selectCard(card)
@@ -261,25 +296,6 @@ function validateCards(firstCard)
 					wins++;
 					
 				}
-				
-				/*$.each(cardsWon, function(index, value) {
-					
-					console.log(index + ' / ' + value)
-					console.log('card choosen' + cardsWon[wins])
-					if (cardsWon[wins]==value)
-					{
-					console.log('You already win this pair')	
-					}
-					 else
-					{
-					cardsWon[wins]=value;
-					// console.log(cardsWon[wins])
-					wins++;
-					score--;
-					console.log('You got this pair')	
-					} 
-					
-				})*/
 			}
 			// console.log(basics);
 			

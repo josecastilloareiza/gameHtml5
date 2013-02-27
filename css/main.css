@@ -136,33 +136,76 @@ a:focus
 /* B */
 /* ---------------------------------- */
 
+.block-1  {
+	
+padding:10px 0;
+ 
+}
+.block-1 .content-1 {
+	background-color:#B8860B;
+border:3px solid #B8860B;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+-webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
+box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
+margin:0 auto 10px;
+padding:10px;
+width:880px;
+}
+.block-1 .content-1 h1
+{
+	color:#fff;
+	text-align:center;
+	margin:0;
+	}
+.block-2 .content-1 {
+	background-color:#f2f2f2;
+border:3px solid #B8860B;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+-webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .1);
+box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .1);
+margin:0 auto;
+padding:30px;
+width:840px;
+}
+
+
 .board 
 {
-	 
-	height:600px;
+	height:520px;
+	margin:0 auto;
+	width:850px;
 }
 
 .board div
 {
 	display:inline-block;
 	height:110px;
-	width:140px;
-	margin:0 30px 30px 0;
+	width:150px;
+	margin:0 35px 15px 0;
 }
+.board div.last
+{
+	display:inline-block;
+	 
+	margin:0 0 15px 0;
+}
+
 .board div a
 {
-	border:2px solid #900;
+	border:2px solid #369;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	-webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
 	box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
 	display:block;
-	height:110px;
+	 
 	padding: 0;
 	text-align:center;
 	transition-duration: 0.5s;
 	-webkit-transition-duration: 0.5s;	
-	width:140px;
+	 
 	
 	 
  
@@ -190,13 +233,14 @@ a:focus
 	position: absolute;
 	transform-style: preserve-3d;
 	-webkit-transform-style: preserve-3d;
-	transition-duration: .5s;
-	-webkit-transition-duration: .5s;	
+	transition-duration: .1s;
+	-webkit-transition-duration: .1s;	
+	 
 }
-.board .card a:hover {
+ .board .card a:hover {
 	-webkit-box-shadow:  0 0 3px 3px rgba(0, 0, 0, .4);
 	box-shadow: 0 0 3px 3px rgba(0, 0, 0, .4); 
-}
+} 
 .board .card figure {
   display: block;
   position: absolute;
@@ -205,21 +249,33 @@ a:focus
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
 }
-
+.board .card .front {
+  
+}
 
 .board .card .back {
   transform: rotateY( 180deg );
   -webkit-transform: rotateY( 180deg );
 }
 
-.board .card.flipped {
+.board .flipped {
   transform: rotateY( 180deg );
   -webkit-transform: rotateY( 180deg );
 }
+
+.board .flip figure {
+	backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+}
+.board .flip .front {
+
+display:none;
+}
+.board .flip .back {
+ -webkit-transform: rotateY( 180deg );
+
+}
  
-/* ---------------------------------- */
-/* FLIP */
-/* ---------------------------------- */
 
 
 
@@ -227,10 +283,8 @@ a:focus
 /* C */
 /* ---------------------------------- */
 
-.content-1 {
-margin:0 auto;
-width:960px;
-}
+
+
 
 /* ---------------------------------- */
 /* D */
