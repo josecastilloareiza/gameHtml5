@@ -18,47 +18,47 @@ Estilos iniciales / Initial rules
 */
 
 h1, h2, h3, h4, h5, h6, p {
-margin:0 0 15px 0;
+	margin:0 0 15px 0;
 }
 
 .clr:after {
-content:".";
-display:block;
-height:0;
-clear:both;
-visibility:hidden;
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
 }
 
 .clr {
-display:block;
-overflow:hidden;
-height:0;
-width:100%;
-clear:both;
+	display:block;
+	overflow:hidden;
+	height:0;
+	width:100%;
+	clear:both;
 }
 
 * html .clr {
-height:0;
+	height:0;
 }
 
 strong {
-font-weight: 700;
+	font-weight: 700;
 }
-:outline, :focus
-{
-	border:none;
+:outline, :focus {
+ border:none;
 }
+
 a {
-text-decoration: none;
-outline:none;
+	text-decoration: none;
+	outline:none;
 }
 
 a:hover {
-text-decoration: underline;
+	text-decoration: underline;
 }
 
 .seo {
-display: none;
+	display: none;
 }
 
 /* ---------------------------------- */
@@ -66,53 +66,53 @@ display: none;
 /* ---------------------------------- */
 
 body {
-text-align:center;
+	text-align:center;
 }
 
 .wrapper {
-text-align:left;
+	text-align:left;
 }
 
 .block {
-display:block;
+	display:block;
 }
 
 .left {
-float:left;
-display:inline;
+	float:left;
+	display:inline;
 }
 
 .right {
-float:right;
-display:inline;
+	float:right;
+	display:inline;
 }
 
 .tir {
-display: block;
-text-indent: -9000em;
+	display: block;
+	text-indent: -9000em;
 }
 
 .rel {
-position:relative;
+	position:relative;
 }
 
 .abs {
-position:absolute;
+	position:absolute;
 }
 
 body {
-background-color:#f2f2f2;
+	background-color:#f2f2f2;
 }
 
 .nav-h, .nav-v {
-margin:0;
-padding:0;
-list-style:none;
+	margin:0;
+	padding:0;
+	list-style:none;
 }
 
 .nav-h li {
-display:inline;
-float:left;
+	display:inline;
+	float:left;
 }
 
 /* ---------------------------------- */
@@ -122,148 +122,121 @@ float:left;
 /* ---------------------------------- */
 /* A */
 /* ---------------------------------- */
- a:active
-{
-outline: none;
+ a:active {
+	outline: none;
 }
 
-a:focus
-{
--moz-outline-style: none;
+a:focus {
+	-moz-outline-style: none;
 }
 
 .action-1 {
-	 
 	font-size: 35px;
 	color: #050505;
 	padding: 10px 20px;
-	background: -moz-linear-gradient(
-		top,
-		#ffffff 0%,
-		#c7d95f 50%,
-		#add136 50%,
-		#6d8000);
-	background: -webkit-gradient(
-		linear, left top, left bottom, 
-		from(#ffffff),
-		color-stop(0.50, #c7d95f),
-		color-stop(0.50, #add136),
-		to(#6d8000));
+	background: -moz-linear-gradient( top, #ffffff 0%, #c7d95f 50%, #add136 50%, #6d8000);
+	background: -webkit-gradient( linear, left top, left bottom, from(#ffffff), color-stop(0.50, #c7d95f), color-stop(0.50, #add136), to(#6d8000));
 	-moz-border-radius: 14px;
 	-webkit-border-radius: 14px;
 	border-radius: 14px;
 	border: 1px solid #6d8000;
 	-moz-box-shadow:
-		0px 1px 3px rgba(000,000,000,0.5),
-		inset 0px 0px 2px rgba(255,255,255,1);
+ 0px 1px 3px rgba(000, 000, 000, 0.5), inset 0px 0px 2px rgba(255, 255, 255, 1);
 	-webkit-box-shadow:
-		0px 1px 3px rgba(000,000,000,0.5),
-		inset 0px 0px 2px rgba(255,255,255,1);
+ 0px 1px 3px rgba(000, 000, 000, 0.5), inset 0px 0px 2px rgba(255, 255, 255, 1);
 	box-shadow:
-		0px 1px 3px rgba(000,000,000,0.5),
-		inset 0px 0px 2px rgba(255,255,255,1);
+ 0px 1px 3px rgba(000, 000, 000, 0.5), inset 0px 0px 2px rgba(255, 255, 255, 1);
 	text-shadow:
-		0px -1px 0px rgba(000,000,000,0.2),
-		0px 1px 0px rgba(255,255,255,0.4);
+ 0px -1px 0px rgba(000, 000, 000, 0.2), 0px 1px 0px rgba(255, 255, 255, 0.4);
 }
 
+.action-2 {
+	font-size:16px;
+	float:right;
+}
 
 /* ---------------------------------- */
 /* B */
 /* ---------------------------------- */
 
-.block-1  {
-	
-padding:10px 0;
- 
+.box-1 {
+	overflow:hidden;
 }
+
+.block-1 {
+	padding:10px 0;
+}
+
 .block-1 .content-1 {
-	background-color:#B8860B;
-border:3px solid #B8860B;
--webkit-border-radius: 10px;
-border-radius: 10px;
--webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
-margin:0 auto 10px;
-padding:10px;
-width:880px;
+	border:3px solid #B8860B;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
+	box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
+	margin:0 auto 10px;
+	padding:10px;
+	width:880px;
 }
-.block-1 .content-1 h1
-{
-	color:#fff;
-	text-align:center;
-	margin:0;
-	text-shadow: 1px 1px 3px #000000;
-	-webkit-text-shadow: 1px 1px 3px #000000;
-        filter: dropshadow(color=#000000, offx=1, offy=1);	
-	}
+
+.block-1 .content-1 h1 {
+	font-family:'Montserrat Subrayada', Arial, Helvetica, sans-serif;
+	padding:10px 0 0 15px;
+}
+
 .block-2 .content-1 {
 	background-color:#f2f2f2;
-border:3px solid #B8860B;
--webkit-border-radius: 10px;
-border-radius: 10px;
--webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .1);
-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .1);
-margin:0 auto;
-padding:30px;
-width:840px;
+	border:3px solid #B8860B;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .1);
+	box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .1);
+	height:620px;
+	margin:0 auto;
+	padding:30px;
+	width:840px;
 }
 
-
-.board 
-{
-	height:520px;
+.board {
+	height:540px;
 	margin:0 auto;
 	width:850px;
 }
 
-.board div
-{
+.board div {
 	display:inline-block;
 	height:110px;
 	width:150px;
-	margin:0 35px 15px 0;
-}
-.board div.last
-{
-	display:inline-block;
-	 
-	margin:0 0 15px 0;
+	margin:5px 25px 15px 5px;
 }
 
-.board div a
-{
+.board div.last {
+	display:inline-block;
+	margin:5px 0 15px 0;
+}
+
+.board div a {
 	border:2px solid #369;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	-webkit-box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
 	box-shadow:  0px 0px 3px 3px rgba(0, 0, 0, .2);
 	display:block;
-	 
 	padding: 0;
 	text-align:center;
 	transition-duration: 0.5s;
-	-webkit-transition-duration: 0.5s;	
-	 
-	
-	 
- 
+	-webkit-transition-duration: 0.5s;
 }
- 
-.board div a img
-{
-	width:100%
-	 
-	
-}
- 
 
-.board .container { 
-  width: 140px;
-  height: 110px;
-  position: relative;
-  perspective: 800px;
-  -webkit-perspective: 800px;
+.board div a img {
+	width:100%
+}
+
+.board .container {
+	width: 140px;
+	height: 110px;
+	position: relative;
+	perspective: 800px;
+	-webkit-perspective: 800px;
 }
 
 .board .card {
@@ -273,50 +246,48 @@ width:840px;
 	transform-style: preserve-3d;
 	-webkit-transform-style: preserve-3d;
 	transition-duration: .1s;
-	-webkit-transition-duration: .1s;	
-	 
+	-webkit-transition-duration: .1s;
 }
- .board .card a:hover {
+
+.board .card a:hover {
 	-webkit-box-shadow:  0 0 3px 3px rgba(0, 0, 0, .4);
-	box-shadow: 0 0 3px 3px rgba(0, 0, 0, .4); 
-} 
-.board .card figure {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+	box-shadow: 0 0 3px 3px rgba(0, 0, 0, .4);
 }
+
+.board .card figure {
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
 .board .card .front {
-  
 }
 
 .board .card .back {
-  transform: rotateY( 180deg );
-  -webkit-transform: rotateY( 180deg );
+	transform: rotateY( 180deg );
+	-webkit-transform: rotateY( 180deg );
 }
 
 .board .flipped {
-  transform: rotateY( 180deg );
-  -webkit-transform: rotateY( 180deg );
+	transform: rotateY( 180deg );
+	-webkit-transform: rotateY( 180deg );
 }
 
 .board .flip figure {
 	backface-visibility: visible;
-  -webkit-backface-visibility: visible;
+	-webkit-backface-visibility: visible;
 }
+
 .board .flip .front {
-
-display:none;
+	display:none;
 }
+
 .board .flip .back {
- -webkit-transform: rotateY( 180deg );
-
+	-webkit-transform: rotateY( 180deg );
 }
- 
-
-
 
 /* ---------------------------------- */
 /* C */
@@ -353,36 +324,33 @@ display:none;
 /* I */
 /* ---------------------------------- */
 
-.intro
-{	
+.intro {
 	height:520px;
 	width:850px;
 	overflow:hidden;
-	
 }
-.intro .img-intro
-{
+
+.intro .img-intro {
 	background:url(../img/intro-1.png) no-repeat 0 0;
 	height:520px;
 	top:-520px;
-	width:850px;
+	width:410px;
 }
 
-.intro .text-intro
-{
+.intro .text-intro {
 	font-family:'Montserrat Subrayada', Arial, Helvetica, sans-serif;
 	font-size:80px;
 	height:370px;
 	padding:150px 0 0 410px;
 	top:-520px;
-	width:850px;
+	width:410px;
 }
-.intro .button-intro
-{
-	height:160px;
-	padding:350px 0 0 410px;
+
+.intro .button-intro {
+	height:130px;
+	padding:380px 0 0 410px;
 	bottom:-520px;
-	width:850px;
+	width:410px;
 }
 /* ---------------------------------- */
 /* J */
@@ -395,9 +363,6 @@ display:none;
 /* ---------------------------------- */
 /* L */
 /* ---------------------------------- */
-
- 
-
 
 /* ---------------------------------- */
 /* M */

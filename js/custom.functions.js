@@ -4,6 +4,9 @@
 	 
 	
 $(document).on("ready", init)
+
+/* --- BASIC VARIABLES --- */
+
 var basics=['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 var cards=['A1', 'A2', 'B1', 'B2' , 'C1', 'C2', 'D1', 'D2', 'E1', 'E2', 'F1', 'F2', 'G1', 'G2', 'H1', 'H2', 'I1', 'I2', 'J1', 'J2' ];
 var cardsWon=['M'];
@@ -13,23 +16,22 @@ var pairSelected=['', '']
 var score=cards.length/2;
 var time=0;
 var firstAttempt=0;
+
+
+/* --- LOAD INTRO --- */
 $(document).on("ready", function()
 {
-	
  	loadIntro();
-	
-	})
+	$(".board").hide();
+})
 
-$(document).on("click", ".card", function(){
-	
-	// $(this).toggleClass("flipped")
-} );
-
+/* --- CHECKED CARDS --- */
 $(document).on("click", ".board div a.visible img", function(event){
 	 
-	$("#message-2").html("Already taken!");
+	$("#message-2").html("Already taken!").delay(1000).fadeOut;
 } );
 
+/* --- PLAYABLE CARDS --- */
 $(document).on("click", ".board div a.hidden img", function(event){
 	 
 	 
@@ -41,14 +43,8 @@ $(document).on("click", ".board div a.hidden img", function(event){
 	});
 	//event.preventDefault();
 	 // return false;
-	
 } );
 
-
-$(document).on('transitionend webkitTransitionEnd oTransitionEnd otransitionend',".board div a", function() {
-    // your event handler
-	// console.log('termino')
-});
 
 /* --- PREVENTS BLUE DOTTED LINE ON CLICK --- */		
 $(document).on("focus", ".card a", function(){
@@ -65,38 +61,58 @@ function init ()
 	removeCards()
 	drawCards()
 
-$("#loadCards").on ("click",
-	function ()
-	{
-		loadArray()
-		removeCards()
-		drawCards()
-		
-	}
-)
+/* --- LOAD CARDS --- */
+	$("#loadCards").on ("click",
+		function ()
+		{
+			loadArray()
+			removeCards()
+			drawCards()
+			
+		}
+	)
 
-$("#startGame").on ("click",
-	function ()
-	{
-		$(".info").slideDown();
-		$(".intro").slideUp();
-		$("#score").html(score)
-		loadArray()
-		removeCards()
-		drawCards()
-		startGame()
-		updateClock(); 
-		setInterval('updateClock()', 1000 );
-	}
-)
+/* --- START GAME --- */
+	$("#startGame").on ("click",
+		function ()
+		{
+			$(".info").slideDown();
+			$(".board").slideDown();
+			$(".intro").slideUp();
+			$("#score").html(score)
+			loadArray()
+			removeCards()
+			drawCards()
+			startGame()
+			updateClock(); 
+			setInterval('updateClock()', 1000 );
+		}
+	)
+	
+/* --- RESET GAME --- */
+	$("#resetGame").on ("click",
+		function ()
+		{
+			$("#score").html(score)
+			loadArray()
+			removeCards()
+			drawCards()
+			startGame()
+			time=180;
+			updateClock(); 
+		}
+	)
 	
 }
 
-
+/* --- RESET TIME GAME --- */
 function startGame()
 {
 	time=180
 }
+
+
+/* --- LOAD INTRO --- */
 function loadIntro()
 {
 	$(".img-intro").delay(1000)
@@ -120,12 +136,17 @@ function loadIntro()
 		easing: 'easeOutBack'
 		}
 	)	
-	
-	
-	
 }	
+
+/* --- RESET INTRO --- */
+function resetIntro()
+{
+	$(".img-intro").css("top", '-520px');
+	$(".text-intro").css("top", '-520px')
+	$(".button-intro").css("bottom", '-520px')
+}
 	 
- /* --- SORT FUNCTIONS --- */
+ /* --- SORT CARDS FUNCTIONS --- */
 function shuffle(o) {
 	 for(var j, x, i = o.length;i;
 	 j = parseInt(Math.random() * i),
@@ -182,10 +203,9 @@ function removeCards()
 	});
 }
 
+/* --- CHECK SELECTED CARDS --- */
 function validateTurn(turn)
 {
-	
-	
 	if(pairSelected[0]=='')
 	{
 		pairSelected[0]=turn;
@@ -234,19 +254,21 @@ function validateTurn(turn)
 				if (score==1)
 				{
 					$("#message").html("Sorry. Game Over!");	
+					$("#message").html('Time is out!')
+					setTimeout(function() {
+					finishGame()
+					}, 2000)
 				}
 				score--;
 				$("#score").html(score)
 			}
 		}
-		
 		// console.log(pairSelected[0] + "/" + pairSelected[1])
-		
 		// console.log(firstCard + " / " + secondCard) 
- 	
 	}
 }
 
+/* --- FLIP CARDS --- */
 function flipCards(firstCard, secondCard)
 {
 	// console.log('Values: ' + firstCard + " / " + secondCard);
@@ -254,6 +276,21 @@ function flipCards(firstCard, secondCard)
 	$("#" + secondCard).addClass("flip").removeClass("hidden").addClass("visible")
 }
 
+/* --- ENDS GAME - RESET ALL --- */
+function finishGame()
+{
+	 
+	$(".board, .info").hide();
+	
+	 $(document).delay(500).queue(function()
+	 {
+		  resetIntro();
+		 $(".intro").show();
+		 loadIntro();
+	})
+}
+
+/* --- VISUAL EFFECT SELECTED CARD --- */
 function selectCard(card)
 {
 	// console.log("#" + card)
@@ -266,25 +303,28 @@ function selectCard(card)
 
 }
 
+/* --- UPDATE CLOCK --- */
 function updateClock()
 {
 	$("#time").html(time);
 	if(time==0)
 	{
-	$("#message").html('Time is out!')
+		$("#message").html('Time is out!')
+		setTimeout(function() {
+		finishGame()
+		}, 2000)
 	}
 	else
 	{
 		time--;
 	}
-  
-	
 }
 
 
+/* --- CHECK WON CARDS --- */
 function validateCards(firstCard)
 {
-	console.log('This the card: ' + firstCard);
+	// console.log('This the card: ' + firstCard);
 	$.each(basics, function(index, value) {
 		 //console.log(this);
 		 if (firstCard==value)
@@ -306,7 +346,7 @@ function validateCards(firstCard)
 			}
 			// console.log(basics);
 			
-		});
+	});
 }
 
 
