@@ -23,6 +23,12 @@ $(document).on("ready", function()
 {
  	loadIntro();
 	$(".board").hide();
+	$("#leaveGame").hide();
+	
+	$("#leaveGame").click(function(){
+		// 
+    	window.close();
+	});
 })
 
 /* --- CHECKED CARDS --- */
@@ -254,7 +260,6 @@ function validateTurn(turn)
 				if (score==1)
 				{
 					$("#message").html("Sorry. Game Over!");	
-					$("#message").html('Time is out!')
 					setTimeout(function() {
 					finishGame()
 					}, 2000)
@@ -286,6 +291,8 @@ function finishGame()
 	 {
 		  resetIntro();
 		 $(".intro").show();
+		 $("#startGame").html('Try again?');
+		 $("#leaveGame").show(); 
 		 loadIntro();
 	})
 }
