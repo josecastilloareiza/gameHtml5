@@ -16,7 +16,7 @@ var firstAttempt=0;
 $(document).on("ready", function()
 {
 	
- 	
+ 	loadIntro();
 	
 	})
 
@@ -59,11 +59,11 @@ $(document).on("focus", ".card a", function(){
  
 /* --- INIT FUNCTIONS --- */
 function init ()
-{
+{	
+	$(".info").hide();
 	loadArray()
-	
-	updateClock(); 
-	setInterval('updateClock()', 1000 );
+	removeCards()
+	drawCards()
 
 $("#loadCards").on ("click",
 	function ()
@@ -78,19 +78,52 @@ $("#loadCards").on ("click",
 $("#startGame").on ("click",
 	function ()
 	{
+		$(".info").slideDown();
+		$(".intro").slideUp();
 		$("#score").html(score)
 		loadArray()
 		removeCards()
 		drawCards()
+		startGame()
+		updateClock(); 
+		setInterval('updateClock()', 1000 );
 	}
 )
 	
 }
 
 
-
- 
+function startGame()
+{
+	time=180
+}
+function loadIntro()
+{
+	$(".img-intro").delay(1000)
+		.animate(
+		{ top: 0 }, {
+		duration: 'slow',
+		easing: 'easeOutBack'
+		}
+	)
+	$(".text-intro").delay(1500)
+		.animate(
+		{ top: 0 }, {
+		duration: 'slow',
+		easing: 'easeOutBack'
+		}
+	)	
+	$(".button-intro").delay(2000)
+		.animate(
+		{ bottom: 0 }, {
+		duration: 'slow',
+		easing: 'easeOutBack'
+		}
+	)	
 	
+	
+	
+}	
 	 
  /* --- SORT FUNCTIONS --- */
 function shuffle(o) {
@@ -173,10 +206,12 @@ function validateTurn(turn)
 		flipCards(pairSelected[0], pairSelected[1])
 		pairSelected[0]='';
 		pairSelected[1]='';
-		$("#message").html("Congratulations! Score: " + score);
-		$("#message-2").html("Match");
+		// $("#message").html("");
+		// $("#message-2").hide();
+		$("#message-2").html("Congratulations!, you have 20 seconds more!").fadeIn().delay(1000).fadeOut();
 		$("#score").html(score)
-		
+		// console.log('Match')
+		time+=20;
 		validateCards(firstCard)
 		}
 		else
@@ -184,15 +219,24 @@ function validateTurn(turn)
 		//console.log(':(')
 		pairSelected[0]='';
 		pairSelected[1]='';
+		
 		$("#score").html(score)
-		$("#message-2").html("No match");
+		//$("#message-2").hide();
+		$("#message-2").html("No match").fadeIn().delay(1000).fadeOut();
+		 
 			if (firstAttempt==0)
 			{
 			firstAttempt=1;
 			}
 			else
 			{
+				// console.log("punto menos")
+				if (score==1)
+				{
+					$("#message").html("Sorry. Game Over!");	
+				}
 				score--;
+				$("#score").html(score)
 			}
 		}
 		
@@ -200,53 +244,19 @@ function validateTurn(turn)
 		
 		// console.log(firstCard + " / " + secondCard) 
  	
-}
-	
-	
-	
-	
-	
-	//var firstCard, secondCard;
-	
-	
-	
-	
+	}
 }
 
 function flipCards(firstCard, secondCard)
 {
-	console.log('Valores: ' + firstCard + " / " + secondCard);
+	// console.log('Values: ' + firstCard + " / " + secondCard);
 	 $("#" + firstCard).addClass("flip").removeClass("hidden").addClass("visible")
 	$("#" + secondCard).addClass("flip").removeClass("hidden").addClass("visible")
-	/*$('.board a').each(function() {
-		var isFound = $(this).text().search(firstCard);
-		if(!isFound)
-		{
-		$(this).addClass("flip")
-		}
-		console.log('Win ' + firstCard)
-		
-		// console.log(isFound)
-	});
-	$('.board a').each(function() {
-		var isFound = $(this).text().search(secondCard);
-		if(!isFound)
-		{
-		$(this).addClass("flip")
-		}
-		console.log('Win ' + secondCard)
-		// console.log(isFound)
-	});*/
-	
-	
-	
-	
 }
 
 function selectCard(card)
 {
 	// console.log("#" + card)
-	
 	$("#" + card).addClass("selected")
 	setTimeout(function() {
 	
@@ -258,17 +268,14 @@ function selectCard(card)
 
 function updateClock()
 {
-	 
-	
-	 
 	$("#time").html(time);
-	if(time==5)
+	if(time==0)
 	{
 	$("#message").html('Time is out!')
 	}
 	else
 	{
-		time++;
+		time--;
 	}
   
 	
@@ -287,11 +294,11 @@ function validateCards(firstCard)
 				if(cardsWon[0]=='M')
 				{
 					cardsWon[wins]=firstCard;
-					console.log(cardsWon[0])
+					// console.log(cardsWon[0])
 				}
 				else
 				{
-					console.log('Algo ' + cardsWon[wins] + ' wins ' + wins)
+					// console.log('Wins  ' + cardsWon[wins] + ' wins ' + wins)
 					cardsWon[wins]=firstCard;
 					wins++;
 					
